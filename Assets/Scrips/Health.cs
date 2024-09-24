@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    [SerializeField] private bool DevMode = false;
 
     private int MAX_HEALTH = 100;
 
@@ -16,14 +17,16 @@ public class Health : MonoBehaviour
 
     void Update()
     {//Det här är ett test för att se om heal och skada fungerar.
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-           // Damage(10);
-        }
+        if (DevMode) { 
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+               Damage(10);
+            }
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            // Heal(10);
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                Heal(10);
+            }
         }
     }
     public void Damage(int amount)

@@ -3071,6 +3071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  DevMode: 0
 --- !u!61 &384000439
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4677,6 +4678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  DevMode: 1
 --- !u!114 &592733617
 MonoBehaviour:
   m_ObjectHideFlags: 0
