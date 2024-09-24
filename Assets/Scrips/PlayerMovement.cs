@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
@@ -26,11 +26,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         horizontalValue = Input.GetAxis("Horizontal");
 
-       if(horizontalValue < 0)
+        if (horizontalValue < 0)
         {
             FlipSprite(true);
         }
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         CheckIfGrounded();
 
-        if(Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
+        if (Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
         {
             Jump();
         }
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("IsGrounded", CheckIfGrounded());
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rgbd.velocity = new Vector2(horizontalValue * moveSpeed * Time.deltaTime, rgbd.velocity.y);
     }
@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rgbd.AddForce(new Vector2(0, jumpForce));
     }
+
     private bool CheckIfGrounded()
     {
         RaycastHit2D leftHit = Physics2D.Raycast(leftFoot.position, Vector2.down, rayDistance, whatIsGround);
@@ -80,5 +81,4 @@ public class PlayerMovement : MonoBehaviour
             return false;
         }
     }
-
 }
