@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - EnemyBlock
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - EnemyBlock
+  - Enemy
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: B1
+    uniqueID: 182195067
+    locked: 0
+  - name: B2
+    uniqueID: 1029139105
+    locked: 0
+  - name: B3
+    uniqueID: 2851079405
+    locked: 0
+  - name: B4
+    uniqueID: 3800217721
+    locked: 0
+  - name: B5
+    uniqueID: 448632003
+    locked: 0
+  - name: B6
+    uniqueID: 806084289
+    locked: 0
+  - name: B7
+    uniqueID: 3620065239
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
