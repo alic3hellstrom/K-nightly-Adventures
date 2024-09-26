@@ -106,7 +106,7 @@ TextureImporter:
         height: 80
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 36, y: 0, z: 38, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -121,13 +121,13 @@ TextureImporter:
       name: _Attack_1
       rect:
         serializedVersion: 2
-        x: 170
+        x: 120
         y: 0
-        width: 70
+        width: 120
         height: 80
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 36, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -142,13 +142,13 @@ TextureImporter:
       name: _Attack_2
       rect:
         serializedVersion: 2
-        x: 241
+        x: 240
         y: 0
         width: 120
         height: 80
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 51, y: 0, z: 40, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -169,7 +169,7 @@ TextureImporter:
         height: 80
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 55, y: 0, z: 39, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
