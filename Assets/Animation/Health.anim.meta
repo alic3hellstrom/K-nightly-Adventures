@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro/Fonts.meta
+guid: 35efbeda90bb2dd4ca0f410228a69f90
+folderAsset: yes
+DefaultImporter:
+========
 guid: 7d728ac0c46e1ad49aae344e02a7e976
 NativeFormatImporter:
+>>>>>>>> main:Assets/Animation/Health.anim.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 

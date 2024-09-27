@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro/Documentation.meta
+guid: ce0cd508782fcbf4b9f0a3636f4db126
+========
 guid: 8301b9e27a95f564590cfaaaa9a228fc
+>>>>>>>> main:Assets/Sprites/red.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
