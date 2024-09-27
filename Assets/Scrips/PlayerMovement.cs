@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
 
+    public bool lookingRight = true;
+
     private bool isGrounded;
     private float rayDistance = 0.25f;
     private float horizontalValue;
@@ -33,11 +35,13 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalValue < 0)
         {
             FlipSprite(true);
+            lookingRight = false;
         }
 
         if (horizontalValue > 0)
         {
             FlipSprite(false);
+            lookingRight = true;
         }
 
         CheckIfGrounded();

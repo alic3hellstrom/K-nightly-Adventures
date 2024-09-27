@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class AttackArea : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
+    [SerializeField] private int damage = 10;
     //private int damage = 10;
 
     private void OnTriggerStay2D(Collider2D other)
@@ -38,18 +40,21 @@ public class AttackArea : MonoBehaviour
         //    print("Their name = " + other.name);
         //    print(other.name);
         //}
-
-        if (player.GetComponent<PlayerAttack>().attacking && other.CompareTag("Enemy") && player.GetComponent<PlayerMovement>().CheckIfGrounded())
+        PlayerMovement pM = player.GetComponent<PlayerMovement>();
+        Health hp = other.GetComponent<Health>();
+        if (player.GetComponent<PlayerAttack>().attacking && other.CompareTag("Enemy") && pM.CheckIfGrounded())
         {
             print("Attacking Enemy" + other.name);
 
-            if (other.transform.position.x > player.transform.position.x)
+            if (other.transform.position.x > player.transform.position.x && pM.lookingRight)
             {
                 other.GetComponent<Rigidbody2D>().AddForce(new(2f, 1.5f), ForceMode2D.Impulse);
+                hp.Damage(damage);
             }
-            else if (other.transform.position.x < player.transform.position.x)
+            else if (other.transform.position.x < player.transform.position.x && !pM.lookingRight)
             {
                 other.GetComponent<Rigidbody2D>().AddForce(new(-2f, 1.5f), ForceMode2D.Impulse);
+                hp.Damage(damage);
             }
         }
     }

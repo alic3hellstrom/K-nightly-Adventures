@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 300
   DevMode: 0
 --- !u!1 &33789858
 GameObject:
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 300
   DevMode: 0
 --- !u!1 &213598604
 GameObject:
@@ -3041,7 +3041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 300
   DevMode: 0
 --- !u!61 &384000439
 BoxCollider2D:
@@ -3369,7 +3369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 300
   DevMode: 0
 --- !u!1 &428926855
 GameObject:
@@ -4651,6 +4651,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  lookingRight: 1
 --- !u!114 &592733616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17724,6 +17725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 592733609}
+  damage: 10
 --- !u!1 &1541077874
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,6 +53,11 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void endAttack()
+    {
+        anim.SetBool("IsAttacking", false);
+    }
+
     //private void OnTriggerStay2D(Collider2D other)
     //{
     //    if (attacking && other.CompareTag("Enemy"))
@@ -61,18 +66,8 @@ public class PlayerAttack : MonoBehaviour
     //    }
     //}
 
-    private void Attack()
-    {
-        attacking = true;
-    }
-
-    public void endAttack()
-    {
-        anim.SetBool("IsAttacking", false);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
+    //}
 }
