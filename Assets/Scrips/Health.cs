@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
 public class Health : MonoBehaviour
 {
     [SerializeField] private bool DevMode = false;
@@ -11,21 +10,21 @@ public class Health : MonoBehaviour
     public int startingHealth = 20;
     public int currentHealth = 0;
     private Animator anim;
-    
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
     }
 
-    void Update()
-    {//Det här är ett test för att se om heal och skada fungerar.
-        if (DevMode) { 
+    private void Update()
+    {//Det hï¿½r ï¿½r ett test fï¿½r att se om heal och skada fungerar.
+        if (DevMode)
+        {
             if (Input.GetKeyDown(KeyCode.G))
             {
-               Damage(10);
+                Damage(10);
             }
 
             if (Input.GetKeyDown(KeyCode.H))
@@ -34,13 +33,14 @@ public class Health : MonoBehaviour
             }
         }
     }
+
     public void Damage(int amount)
     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
         }
-            this.currentHealth -= amount;
+        this.currentHealth -= amount;
         if (currentHealth < startingHealth)
         {
             anim.SetTrigger("Attacked");
@@ -51,15 +51,14 @@ public class Health : MonoBehaviour
             Die();
             anim.SetTrigger("IsDead");
         }
-
     }
+
     public void Heal(int amount)
     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
         }
-
 
         bool wouldBeMaxHealth = currentHealth + amount > startingHealth;
 
@@ -75,9 +74,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-            Debug.Log("I am Dead");
-            Destroy(gameObject, 1f);
+        Debug.Log("I am Dead");
+        Destroy(gameObject, 1f);
     }
-
-    
-}   
+}
