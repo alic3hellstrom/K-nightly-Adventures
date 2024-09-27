@@ -1,21 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class AttackArea : MonoBehaviour
-
 {
-    [SerializeField] private GameObject player;
+    private int damage = 10;
 
-    [SerializeField] private int damage = 10;
-    //private int damage = 10;
-
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         Console.Clear();
 
@@ -48,18 +39,8 @@ public class AttackArea : MonoBehaviour
         Health hp = other.GetComponent<Health>();
         if (player.GetComponent<PlayerAttack>().attacking && other.CompareTag("Enemy") && pM.CheckIfGrounded())
         {
-            print("Attacking Enemy" + other.name);
-
-            if (other.transform.position.x > player.transform.position.x && pM.lookingRight)
-            {
-                other.GetComponent<Rigidbody2D>().AddForce(new(2f, 1.5f), ForceMode2D.Impulse);
-                hp.Damage(damage);
-            }
-            else if (other.transform.position.x < player.transform.position.x && !pM.lookingRight)
-            {
-                other.GetComponent<Rigidbody2D>().AddForce(new(-2f, 1.5f), ForceMode2D.Impulse);
-                hp.Damage(damage);
-            }
+            Health health = collider.GetComponent<Health>();
+            health.Damage(damage);
         }
     }
 }
