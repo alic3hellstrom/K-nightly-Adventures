@@ -14,18 +14,19 @@ public class Health : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
     }
 
-    void Update()
-    {//Det här är ett test för att se om heal och skada fungerar.
-        if (DevMode) { 
+    private void Update()
+    {//Det hï¿½r ï¿½r ett test fï¿½r att se om heal och skada fungerar.
+        if (DevMode)
+        {
             if (Input.GetKeyDown(KeyCode.G))
             {
-               Damage(10);
+                Damage(10);
             }
 
             if (Input.GetKeyDown(KeyCode.H))
@@ -34,6 +35,7 @@ public class Health : MonoBehaviour
             }
         }
     }
+
     public void Damage(int amount)
     {
         if (amount < 0)
@@ -45,14 +47,15 @@ public class Health : MonoBehaviour
         {
             anim.SetTrigger("Attacked");
         }
+        this.health -= amount;
 
         if (currentHealth <= 0)
         {
             Die();
             anim.SetTrigger("IsDead");
         }
-
     }
+
     public void Heal(int amount)
     {
         if (amount < 0)

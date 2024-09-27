@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private GameObject attackArea;
+    [SerializeField] private GameObject player;
 
-    private GameObject attackArea = default;
+    public bool attacking = false;
 
-    private bool attacking = false;
-
-    private float timeToAttack = 0.25f; 
+    private float timeToAttack = 0.25f;
     private float timer = 0f;
+    private bool grounded = true;
 
     private Animator anim;
 
@@ -19,50 +20,54 @@ public class PlayerAttack : MonoBehaviour
     public float radius;
     public LayerMask enemies;
 
-    void Start()
+    private void Start()
     {
-        attackArea = transform.GetChild(2).gameObject;
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    //Update is private called once private per frame
+
+    private void Update()
+
     {
+        grounded = player.GetComponent<PlayerMovement>().CheckIfGrounded();
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             anim.SetBool("IsAttacking", true);
-            Attack();
+            attacking = true;
+            //attackArea.SetActive(true);
+
+            //Attack();
         }
 
-        if(attacking)
+        if (attacking && grounded)
         {
             timer += Time.deltaTime;
-
+            print(timer);
             if (timer >= timeToAttack)
             {
                 timer = 0;
                 attacking = false;
-                attackArea.SetActive(attacking);
+                attackArea.SetActive(false);
             }
         }
     }
-    private void Attack()
-    {
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
-
-        foreach (Collider2D enemyGameobject in enemy) 
-        
-        attacking = true;
-        attackArea.SetActive(true);
-    }
 
     public void endAttack()
-    { 
+    {
         anim.SetBool("IsAttacking", false);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
-    }
+    //private void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (attacking && other.CompareTag("Enemy"))
+    //    {
+    //        other.GetComponent<Rigidbody2D>().velocity = new(20, 0);
+    //    }
+    //}
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
+    //}
 }
