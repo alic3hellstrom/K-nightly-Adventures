@@ -16,8 +16,6 @@ public class PlayerAttack : MonoBehaviour
 
     private Animator anim;
 
-    public GameObject attackPoint;
-    public float radius;
     public LayerMask enemies;
 
     private void Start()
@@ -43,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
         if (attacking && grounded)
         {
             timer += Time.deltaTime;
-            print(timer);
+            //print(timer);
             if (timer >= timeToAttack)
             {
                 timer = 0;

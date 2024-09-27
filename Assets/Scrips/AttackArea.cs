@@ -40,6 +40,10 @@ public class AttackArea : MonoBehaviour
         //    print("Their name = " + other.name);
         //    print(other.name);
         //}
+
+        print(other.name);
+        print(other.tag);
+
         PlayerMovement pM = player.GetComponent<PlayerMovement>();
         Health hp = other.GetComponent<Health>();
         if (player.GetComponent<PlayerAttack>().attacking && other.CompareTag("Enemy") && pM.CheckIfGrounded())
