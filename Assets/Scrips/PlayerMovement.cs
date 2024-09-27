@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private Transform spawnPosition;
 
-    
+    public float Health;
+    private bool isGrounded;
     private float rayDistance = 0.25f;
     private float horizontalValue;
     private Rigidbody2D rgbd;
@@ -20,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthBar.value = Health;
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -50,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
         anim.SetFloat("VerticalSpeed", rgbd.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
+
+        
     }
 
     void FixedUpdate()
@@ -80,5 +87,22 @@ public class PlayerMovement : MonoBehaviour
             return false;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer.Equals(8)) // 8 står för layer 8 som är enemies, om spelaren krockar med enemies, får den 10 i skada. 
+            {
+            //Health = Health - 10;
+            Health -= 10;
+            healthBar.value = Health;
+        }
+    }
+    private void Respawn()
+    {
+
+        transform.position = spawnPosition.position;
+        rgbd.velocity = Vector2.zero;
+    }
+
 
 }

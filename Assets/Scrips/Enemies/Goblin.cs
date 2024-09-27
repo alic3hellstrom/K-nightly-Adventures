@@ -23,7 +23,7 @@ public class Goblin : MonoBehaviour
 
         if (moveSpeed < 0)
         {
-            rend.flipY = false;
+            rend.flipX = false;
         }
     }
     private void OnCollisionEnter2D(Collision2D other)
