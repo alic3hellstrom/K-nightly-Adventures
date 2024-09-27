@@ -7,15 +7,17 @@ public class Health : MonoBehaviour
     [SerializeField] private int health = 100;
 
     private int MAX_HEALTH = 100;
+    //private int startingHealth = 5;
+    //private int currentHealth = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //currentHealth = startingHealth;
     }
 
     void Update()
-    {//Det här är ett test för att se om heal och skada fungerar.
+    {//Det hï¿½r ï¿½r ett test fï¿½r att se om heal och skada fungerar.
         if (Input.GetKeyDown(KeyCode.G))
         {
            // Damage(10);

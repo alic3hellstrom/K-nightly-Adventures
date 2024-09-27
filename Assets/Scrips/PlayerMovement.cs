@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
 
-    private bool isGrounded;
+    
     private float rayDistance = 0.25f;
     private float horizontalValue;
     private Rigidbody2D rgbd;
