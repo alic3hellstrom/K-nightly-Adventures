@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: 7d728ac0c46e1ad49aae344e02a7e976
-NativeFormatImporter:
+
+guid: 9005f6e5ca0c4e34dbf5066ef2fb71e6
+
+folderAsset: yes
+DefaultImporter:
+
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
