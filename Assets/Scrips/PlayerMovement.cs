@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         rgbd.AddForce(new Vector2(0, jumpForce));
     }
 
-    private bool CheckIfGrounded()
+    public bool CheckIfGrounded()
     {
         RaycastHit2D leftHit = Physics2D.Raycast(leftFoot.position, Vector2.down, rayDistance, whatIsGround);
         RaycastHit2D rightHit = Physics2D.Raycast(rightFoot.position, Vector2.down, rayDistance, whatIsGround);

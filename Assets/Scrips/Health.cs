@@ -10,17 +10,17 @@ public class Health : MonoBehaviour
     private int MAX_HEALTH = 100;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
     }
 
-    void Update()
+    private void Update()
     {//Det här är ett test för att se om heal och skada fungerar.
-        if (DevMode) { 
+        if (DevMode)
+        {
             if (Input.GetKeyDown(KeyCode.G))
             {
-               Damage(10);
+                Damage(10);
             }
 
             if (Input.GetKeyDown(KeyCode.H))
@@ -29,28 +29,27 @@ public class Health : MonoBehaviour
             }
         }
     }
+
     public void Damage(int amount)
     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
-         
         }
-            this.health -= amount;
+        this.health -= amount;
 
         if (health <= 0)
         {
             Die();
         }
-
     }
+
     public void Heal(int amount)
     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
         }
-
 
         bool wouldBeMaxHealth = health + amount > MAX_HEALTH;
 
@@ -66,9 +65,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-            Debug.Log("I am Dead");
-            Destroy(gameObject);
-            
-
+        Debug.Log("I am Dead");
+        Destroy(gameObject);
     }
-}   
+}

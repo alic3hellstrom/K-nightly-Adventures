@@ -9,20 +9,48 @@ using UnityEngine.UIElements;
 public class AttackArea : MonoBehaviour
 
 {
-    [SerializeField] private Transform playerTrans;
+    [SerializeField] private GameObject player;
 
-    private int damage = 10;
+    //private int damage = 10;
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (collider.GetComponent<Health>() != null)
-        {
-            float xAxis = collider.transform.position.x - playerTrans.position.x;
+        Console.Clear();
 
-            print(-xAxis + ", " + 0);
-            collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(xAxis * 40, 0));
-            Health health = collider.GetComponent<Health>();
-            health.Damage(damage);
+        //if (collider.GetComponent<Health>() != null)
+        //{
+        //    float xAxis = collider.transform.position.x - playerTrans.position.x;
+
+        //    print(-xAxis + ", " + 0);
+        //    collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(xAxis * 40, 0));
+        //    Health health = collider.GetComponent<Health>();
+        //    health.Damage(damage);
+        //}
+        //print(player.GetComponent<PlayerAttack>().attacking);
+        //print("Tried attacking");
+        //if (player.GetComponent<PlayerAttack>().attacking == true)
+        //{
+        //    print("Detected attacking");
+        //}
+        //if (other.CompareTag("Enemy"))
+        //{
+        //    print("Detected enemy as enemy");
+        //    print("Their name = " + other.name);
+        //    print(other.name);
+        //}
+
+        if (player.GetComponent<PlayerAttack>().attacking && other.CompareTag("Enemy") && player.GetComponent<PlayerMovement>().CheckIfGrounded())
+        {
+            print("Attacking Enemy" + other.name);
+
+            if (other.transform.position.x > player.transform.position.x)
+            {
+                other.GetComponent<Rigidbody2D>().AddForce(new(2f, 1.5f), ForceMode2D.Impulse);
+            }
+            else if (other.transform.position.x < player.transform.position.x)
+            {
+                other.GetComponent<Rigidbody2D>().AddForce(new(-2f, 1.5f), ForceMode2D.Impulse);
+            }
         }
     }
 }
