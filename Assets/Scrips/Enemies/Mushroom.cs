@@ -6,10 +6,13 @@ public class Mushroom : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2.0f;
     private SpriteRenderer rend;
+    private Rigidbody2D rgbd;
+    private Animator anim;
 
     private void Start()
     {
-
+        rgbd = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
     }
     void FixedUpdate()
@@ -25,6 +28,8 @@ public class Mushroom : MonoBehaviour
         {
             rend.flipX = false;
         }
+
+        anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
     }
     private void OnCollisionEnter2D(Collision2D other)
     {

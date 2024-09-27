@@ -12,8 +12,6 @@ public class FlyingEye : MonoBehaviour
     private SpriteRenderer rend;
     private GameObject player;
    
-
-
     private void Start()
 
 
@@ -31,6 +29,7 @@ public class FlyingEye : MonoBehaviour
         else
             ReturnStartPoint();
         Flip();
+
     }
 
     private void ReturnStartPoint()

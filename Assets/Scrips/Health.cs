@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int health = 100;
     [SerializeField] private bool DevMode = false;
 
-    private int MAX_HEALTH = 100;
+    public int startingHealth = 20;
+    public int currentHealth = 0;
+    private Animator anim;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = startingHealth;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -35,13 +39,17 @@ public class Health : MonoBehaviour
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
-         
         }
-            this.health -= amount;
+            this.currentHealth -= amount;
+        if (currentHealth < startingHealth)
+        {
+            anim.SetTrigger("Attacked");
+        }
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
+            anim.SetTrigger("IsDead");
         }
 
     }
@@ -53,23 +61,23 @@ public class Health : MonoBehaviour
         }
 
 
-        bool wouldBeMaxHealth = health + amount > MAX_HEALTH;
+        bool wouldBeMaxHealth = currentHealth + amount > startingHealth;
 
         if (wouldBeMaxHealth)
         {
-            this.health = MAX_HEALTH;
+            this.currentHealth = startingHealth;
         }
         else
         {
-            this.health += amount;
+            this.currentHealth += amount;
         }
     }
 
     private void Die()
     {
             Debug.Log("I am Dead");
-            Destroy(gameObject);
-            
-
+            Destroy(gameObject, 1f);
     }
+
+    
 }   
