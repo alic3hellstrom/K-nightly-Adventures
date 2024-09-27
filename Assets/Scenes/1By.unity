@@ -413,8 +413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
   DevMode: 0
+  startingHealth: 20
+  currentHealth: 0
 --- !u!1 &33789858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,8 +1319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
   DevMode: 0
+  startingHealth: 20
+  currentHealth: 0
 --- !u!1 &213598604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3302,7 +3304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
   DevMode: 0
   startingHealth: 20
   currentHealth: 0
@@ -3632,8 +3633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
   DevMode: 0
+  startingHealth: 20
+  currentHealth: 0
 --- !u!1 &428926855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,8 +4980,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.29566956, y: 1.156987}
-  m_Size: {x: 0.8650665, y: 2.3126416}
+  m_Offset: {x: 0, y: 1.156987}
+  m_Size: {x: 0.8, y: 2.3126416}
   m_Direction: 0
 --- !u!50 &592733614
 Rigidbody2D:
@@ -5058,7 +5060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff497900789e1614583f9f05e309fa9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackArea: {fileID: 2141471420}
+  attackArea: {fileID: 1525210213}
   player: {fileID: 592733609}
   attacking: 0
   attackPoint: {fileID: 2141471420}
@@ -5076,7 +5078,7 @@ Animator:
   m_GameObject: {fileID: 592733609}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6f2a43a9ee66242dc8a8fc772c6c5d8b, type: 2}
+  m_Controller: {fileID: 9100000, guid: eed37141d6b8c6c4eb1030c7c9d4c621, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5087,7 +5089,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-    m_Bits: 256
 --- !u!1 &593566872
 GameObject:
   m_ObjectHideFlags: 0
@@ -22986,8 +22987,6 @@ SceneRoots:
   - {fileID: 191410401}
   - {fileID: 426151317}
   - {fileID: 342175993}
-  - {fileID: 2070904448}
-  - {fileID: 1017573327}
   - {fileID: 329646913}
   - {fileID: 290551842}
   - {fileID: 96585621}

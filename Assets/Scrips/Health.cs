@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
 public class Health : MonoBehaviour
 {
     [SerializeField] private bool DevMode = false;
@@ -11,7 +10,6 @@ public class Health : MonoBehaviour
     public int startingHealth = 20;
     public int currentHealth = 0;
     private Animator anim;
-    
 
     // Start is called before the first frame update
     private void Start()
@@ -42,12 +40,11 @@ public class Health : MonoBehaviour
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
         }
-            this.currentHealth -= amount;
+        this.currentHealth -= amount;
         if (currentHealth < startingHealth)
         {
             anim.SetTrigger("Attacked");
         }
-        this.health -= amount;
 
         if (currentHealth <= 0)
         {
@@ -63,7 +60,6 @@ public class Health : MonoBehaviour
             throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
         }
 
-
         bool wouldBeMaxHealth = currentHealth + amount > startingHealth;
 
         if (wouldBeMaxHealth)
@@ -78,9 +74,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-            Debug.Log("I am Dead");
-            Destroy(gameObject, 1f);
+        Debug.Log("I am Dead");
+        Destroy(gameObject, 1f);
     }
-
-    
-}   
+}

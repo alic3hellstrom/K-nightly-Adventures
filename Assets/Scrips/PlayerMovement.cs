@@ -59,8 +59,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
         anim.SetFloat("VerticalSpeed", rgbd.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
-
-        
     }
 
     private void FixedUpdate()
@@ -95,20 +93,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer.Equals(8)) // 8 st�r f�r layer 8 som �r enemies, om spelaren krockar med enemies, f�r den 10 i skada. 
-            {
+        if (collision.gameObject.layer.Equals(8)) // 8 st�r f�r layer 8 som �r enemies, om spelaren krockar med enemies, f�r den 10 i skada.
+        {
             //Health = Health - 10;
             Health -= 10;
             healthBar.value = Health;
         }
     }
+
     private void Respawn()
     {
-
         transform.position = spawnPosition.position;
         rgbd.velocity = Vector2.zero;
     }
-
-
-}
 }
