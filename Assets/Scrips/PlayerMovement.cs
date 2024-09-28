@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.value = Health;
+       
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthBar.value = Health;
         horizontalValue = Input.GetAxis("Horizontal");
 
        if(horizontalValue < 0)
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer.Equals(8)) // 8 står för layer 8 som är enemies, om spelaren krockar med enemies, får den 10 i skada. 
-            {
+        {
             //Health = Health - 10;
             Health -= 10;
             healthBar.value = Health;

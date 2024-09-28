@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private bool DevMode = false;
+    [SerializeField] private Slider healthBar;
 
     public int startingHealth = 20;
     public int currentHealth = 0;
     private Animator anim;
-    
+   
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,10 @@ public class Health : MonoBehaviour
     }
 
     void Update()
-    {//Det här är ett test för att se om heal och skada fungerar.
+
+    {
+        healthBar.value = currentHealth;
+        //Det här är ett test för att se om heal och skada fungerar.
         if (DevMode) { 
             if (Input.GetKeyDown(KeyCode.G))
             {

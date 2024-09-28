@@ -37,5 +37,9 @@ public class Mushroom : MonoBehaviour
         {
             moveSpeed = -moveSpeed;
         }
+        if (other.gameObject.CompareTag("Player"))
+        {
+           
+        }
     }
 }
