@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
 
     private float timeToAttack = 0.25f; 
     private float timer = 0f;
+    public float radius;
 
     private Animator anim;
 
@@ -46,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Attack()
     {
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackArea.transform.position, radius, enemies);
 
         foreach (Collider2D enemyGameobject in enemy) 
         
@@ -61,6 +62,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
+        Gizmos.DrawWireSphere(attackArea.transform.position, radius);
     }
 }

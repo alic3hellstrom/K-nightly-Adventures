@@ -8,7 +8,7 @@ public class AttackArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Console.Clear();
+        //Console.Clear();
 
         //if (collider.GetComponent<Health>() != null)
         //{
@@ -32,9 +32,10 @@ public class AttackArea : MonoBehaviour
         //    print(other.name);
         //}
 
-        print(other.name);
-        print(other.tag);
+        //print(other.name);
+        //print(other.tag);
 
+        /*
         PlayerMovement pM = player.GetComponent<PlayerMovement>();
         Health hp = other.GetComponent<Health>();
         if (player.GetComponent<PlayerAttack>().attacking && other.CompareTag("Enemy") && pM.CheckIfGrounded())
@@ -42,5 +43,6 @@ public class AttackArea : MonoBehaviour
             Health health = collider.GetComponent<Health>();
             health.Damage(damage);
         }
+        */
     }
 }
