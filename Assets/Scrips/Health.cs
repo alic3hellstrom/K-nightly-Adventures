@@ -26,11 +26,16 @@ public class Health : MonoBehaviour
 
     {
         healthBar.value = currentHealth;
-        //Det här är ett test för att se om heal och skada fungerar.
+        //Det hï¿½r ï¿½r ett test fï¿½r att se om heal och skada fungerar.
         if (DevMode) { 
             if (Input.GetKeyDown(KeyCode.G))
             {
-               Damage(10);
+               Damage(10, false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+               Damage(10, true);
             }
 
             if (Input.GetKeyDown(KeyCode.H))
@@ -39,7 +44,7 @@ public class Health : MonoBehaviour
             }
         }
     }
-    public void Damage(int amount)
+    public void Damage(int amount, bool isPlayer)
     {
         if (amount < 0)
         {
@@ -53,11 +58,11 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            Die(isPlayer);
             anim.SetTrigger("IsDead");
         }
-
     }
+    
     public void Heal(int amount)
     {
         if (amount < 0)
@@ -76,12 +81,17 @@ public class Health : MonoBehaviour
         {
             this.currentHealth += amount;
         }
+
+        anim.SetTrigger("IsIdle");
     }
 
-    private void Die()
+    private void Die(bool isPlayer)
     {
             Debug.Log("I am Dead");
-            Destroy(gameObject, 1f);
+            if (!isPlayer)
+            {
+                Destroy(gameObject, 1f);
+            }
     }
 
     
