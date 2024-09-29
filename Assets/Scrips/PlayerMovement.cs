@@ -10,10 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
-    [SerializeField] private Slider healthBar;
     [SerializeField] private Transform spawnPosition;
+    [SerializeField] private Health playerHealth;
 
-    public float Health;
     private bool isGrounded;
     private float rayDistance = 0.25f;
     private float horizontalValue;
@@ -33,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = Health;
         horizontalValue = Input.GetAxis("Horizontal");
 
        if(horizontalValue < 0)
@@ -58,6 +56,17 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("IsGrounded", CheckIfGrounded());
 
         
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        playerHealth.Damage(damageAmount, true);
+        if(playerHealth.currentHealth <= 0)
+        {
+            Respawn();
+            playerHealth.Heal(playerHealth.startingHealth);
+        }
     }
 
     void FixedUpdate()
@@ -91,16 +100,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer.Equals(8)) // 8 står för layer 8 som är enemies, om spelaren krockar med enemies, får den 10 i skada. 
+        if(collision.gameObject.layer.Equals(8)) // 8 stï¿½r fï¿½r layer 8 som ï¿½r enemies, om spelaren krockar med enemies, fï¿½r den 10 i skada. 
         {
-            //Health = Health - 10;
-            Health -= 10;
-            healthBar.value = Health;
+            TakeDamage(10);
         }
     }
+
     private void Respawn()
     {
-
         transform.position = spawnPosition.position;
         rgbd.velocity = Vector2.zero;
     }
