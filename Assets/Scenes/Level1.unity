@@ -5028,9 +5028,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633761311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mushroom
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9033,7 +9033,7 @@ GameObject:
   - component: {fileID: 1203973694}
   m_Layer: 8
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

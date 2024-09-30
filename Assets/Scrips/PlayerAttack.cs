@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        attackArea.SetActive(false);
+        //attackArea.SetActive(false);
     }
 
     // Update is called once per frame
