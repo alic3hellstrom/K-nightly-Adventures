@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Respawn()
+    public void Respawn()
     {
         transform.position = spawnPosition.position;
         rgbd.velocity = Vector2.zero;

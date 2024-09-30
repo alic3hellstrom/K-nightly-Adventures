@@ -9,7 +9,9 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private bool DevMode = false;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Transform spawnPosition;
 
+    private Rigidbody2D rgbd;
     public int startingHealth = 20;
     public int currentHealth = 0;
     private Animator anim;
@@ -19,6 +21,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHealth = startingHealth;
+        rgbd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -84,6 +87,11 @@ public class Health : MonoBehaviour
 
         anim.SetTrigger("IsIdle");
     }
+    public void Respawn()
+    {
+        transform.position = spawnPosition.position;
+        rgbd.velocity = Vector2.zero;
+    }
 
     private void Die(bool isPlayer)
     {
@@ -91,6 +99,7 @@ public class Health : MonoBehaviour
             if (!isPlayer)
             {
                 Destroy(gameObject, 1f);
+                Respawn();
             }
     }
 
