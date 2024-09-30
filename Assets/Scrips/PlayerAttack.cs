@@ -5,36 +5,36 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private GameObject attackArea;
+    [SerializeField] private GameObject player;
 
-    private GameObject attackArea = default;
+    public bool attacking = false;
 
-    private bool attacking = false;
-
-    private float timeToAttack = 0.25f; 
+    private float timeToAttack = 0.25f;
     private float timer = 0f;
+    private bool grounded = true;
 
     private Animator anim;
 
-    public GameObject attackPoint;
-    public float radius;
     public LayerMask enemies;
 
-    void Start()
+    private void Start()
     {
-        attackArea = transform.GetChild(2).gameObject;
         anim = GetComponent<Animator>();
+        attackArea.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        grounded = player.GetComponent<PlayerMovement>().CheckIfGrounded();
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             anim.SetBool("IsAttacking", true);
-            Attack();
+            attacking = true;
         }
 
-        if(attacking)
+        if (attacking && grounded)
         {
             timer += Time.deltaTime;
 
@@ -42,27 +42,18 @@ public class PlayerAttack : MonoBehaviour
             {
                 timer = 0;
                 attacking = false;
-                attackArea.SetActive(attacking);
+                attackArea.SetActive(false);
             }
         }
     }
-    private void Attack()
-    {
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
-
-        foreach (Collider2D enemyGameobject in enemy) 
-        
-        attacking = true;
-        attackArea.SetActive(true);
-    }
 
     public void endAttack()
-    { 
+    {
         anim.SetBool("IsAttacking", false);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
+    //}
 }

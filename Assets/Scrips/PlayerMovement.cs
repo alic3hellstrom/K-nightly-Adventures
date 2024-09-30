@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private Health playerHealth;
 
+    public bool lookingRight = true;
+
     private bool isGrounded;
     private float rayDistance = 0.25f;
     private float horizontalValue;
@@ -21,32 +23,31 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-       
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         horizontalValue = Input.GetAxis("Horizontal");
 
-       if(horizontalValue < 0)
+        if (horizontalValue < 0)
         {
             FlipSprite(true);
+            lookingRight = false;
         }
 
         if (horizontalValue > 0)
         {
             FlipSprite(false);
+            lookingRight = true;
         }
 
-        CheckIfGrounded();
-
-        if(Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
+        if (Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
         {
             Jump();
         }
@@ -54,22 +55,20 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
         anim.SetFloat("VerticalSpeed", rgbd.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
-
-        
     }
 
     public void TakeDamage(int damageAmount)
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         playerHealth.Damage(damageAmount, true);
-        if(playerHealth.currentHealth <= 0)
+        if (playerHealth.currentHealth <= 0)
         {
             Respawn();
             playerHealth.Heal(playerHealth.startingHealth);
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rgbd.velocity = new Vector2(horizontalValue * moveSpeed * Time.deltaTime, rgbd.velocity.y);
     }
@@ -83,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rgbd.AddForce(new Vector2(0, jumpForce));
     }
-    private bool CheckIfGrounded()
+
+    public bool CheckIfGrounded()
     {
         RaycastHit2D leftHit = Physics2D.Raycast(leftFoot.position, Vector2.down, rayDistance, whatIsGround);
         RaycastHit2D rightHit = Physics2D.Raycast(rightFoot.position, Vector2.down, rayDistance, whatIsGround);
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer.Equals(8)) // 8 st�r f�r layer 8 som �r enemies, om spelaren krockar med enemies, f�r den 10 i skada. 
+        if (collision.gameObject.layer.Equals(8)) // 8 st�r f�r layer 8 som �r enemies, om spelaren krockar med enemies, f�r den 10 i skada.
         {
             TakeDamage(10);
         }
@@ -111,6 +111,4 @@ public class PlayerMovement : MonoBehaviour
         transform.position = spawnPosition.position;
         rgbd.velocity = Vector2.zero;
     }
-
-
 }

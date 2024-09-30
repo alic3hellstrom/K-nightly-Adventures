@@ -4,14 +4,29 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private int damage = 10;
+    [SerializeField] private GameObject player;
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    [SerializeField] private int damage = 10;
+
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if(collider.GetComponent<Health>() != null)
+        PlayerMovement pM = player.GetComponent<PlayerMovement>();
+        Health hp = other.GetComponent<Health>();
+        if (player.GetComponent<PlayerAttack>().attacking && other.CompareTag("Enemy") && pM.CheckIfGrounded())
         {
-            Health health = collider.GetComponent<Health>();
-            health.Damage(damage, false);
+            print("Attacking Enemy" + other.name);
+            print("HELLO WORLD");
+
+            if (other.transform.position.x > player.transform.position.x && pM.lookingRight)
+            {
+                other.GetComponent<Rigidbody2D>().AddForce(new(2f, 1.5f), ForceMode2D.Impulse);
+                hp.Damage(damage, false);
+            }
+            else if (other.transform.position.x < player.transform.position.x && !pM.lookingRight)
+            {
+                other.GetComponent<Rigidbody2D>().AddForce(new(-2f, 1.5f), ForceMode2D.Impulse);
+                hp.Damage(damage, false);
+            }
         }
     }
 }

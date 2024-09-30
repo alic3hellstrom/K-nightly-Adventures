@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Health : MonoBehaviour
 {
     [SerializeField] private bool DevMode = false;
@@ -12,33 +11,36 @@ public class Health : MonoBehaviour
     [SerializeField] private Transform spawnPosition;
 
     private Rigidbody2D rgbd;
+
     public int startingHealth = 20;
-    public int currentHealth = 0;
+    public int currentHealth = 20;
+
     private Animator anim;
-   
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         currentHealth = startingHealth;
         rgbd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
 
     {
         healthBar.value = currentHealth;
+
         //Det h�r �r ett test f�r att se om heal och skada fungerar.
-        if (DevMode) { 
+        if (DevMode)
+        {
             if (Input.GetKeyDown(KeyCode.G))
             {
-               Damage(10, false);
+                Damage(10, false);
             }
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-               Damage(10, true);
+                Damage(10, true);
             }
 
             if (Input.GetKeyDown(KeyCode.H))
@@ -47,17 +49,19 @@ public class Health : MonoBehaviour
             }
         }
     }
+
     public void Damage(int amount, bool isPlayer)
     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
         }
-            this.currentHealth -= amount;
+        this.currentHealth -= amount;
         if (currentHealth < startingHealth)
         {
             anim.SetTrigger("Attacked");
         }
+        print("TAking Damage");
 
         if (currentHealth <= 0)
         {
@@ -65,14 +69,13 @@ public class Health : MonoBehaviour
             anim.SetTrigger("IsDead");
         }
     }
-    
+
     public void Heal(int amount)
     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
         }
-
 
         bool wouldBeMaxHealth = currentHealth + amount > startingHealth;
 
@@ -87,6 +90,7 @@ public class Health : MonoBehaviour
 
         anim.SetTrigger("IsIdle");
     }
+
     public void Respawn()
     {
         transform.position = spawnPosition.position;
@@ -95,13 +99,14 @@ public class Health : MonoBehaviour
 
     private void Die(bool isPlayer)
     {
-            Debug.Log("I am Dead");
-            if (!isPlayer)
-            {
-                Destroy(gameObject, 1f);
-                Respawn();
-            }
+        Debug.Log("I am Dead");
+        if (!isPlayer)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Respawn();
+        }
     }
-
-    
-}   
+}
