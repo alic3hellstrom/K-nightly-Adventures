@@ -20,14 +20,14 @@ public class Mushroom : MonoBehaviour
     {
         transform.Translate(new Vector2(moveSpeed, 0) * Time.deltaTime);
 
-        if (moveSpeed > 0)
-        {
-            rend.flipX = true;
-        }
-
         if (moveSpeed < 0)
         {
-            rend.flipX = false;
+            Flip();
+        }
+
+        if (moveSpeed > 0)
+        {
+            
         }
 
         anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
@@ -44,6 +44,12 @@ public class Mushroom : MonoBehaviour
         }
     }
 
+    void Flip()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
