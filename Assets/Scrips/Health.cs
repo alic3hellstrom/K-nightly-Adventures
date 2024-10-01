@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        transform.position = spawnPosition.position;
         currentHealth = startingHealth;
         rgbd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -52,10 +53,7 @@ public class Health : MonoBehaviour
 
     public void Damage(int amount, bool isPlayer)
     {
-        if (amount < 0)
-        {
-            throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
-        }
+        print("Damage Taken: " + amount);
         this.currentHealth -= amount;
         if (currentHealth < startingHealth)
         {

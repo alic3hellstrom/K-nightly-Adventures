@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 timer = 0;
                 attacking = false;
-                attackArea.SetActive(false);
+                //attackArea.SetActive(false);
             }
         }
     }

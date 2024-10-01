@@ -11,7 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform spawnPosition;
-    [SerializeField] private Health playerHealth;
+    //[SerializeField] private Health playerHealth;
+
+    public float hitTimer = 0;
+
+    private Health playerHealh;
 
     public bool lookingRight = true;
 
@@ -28,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        playerHealh = this.GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -55,16 +60,22 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
         anim.SetFloat("VerticalSpeed", rgbd.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
+
+        if (hitTimer > 0)
+        {
+            //print(hitTimer);
+            hitTimer -= Time.deltaTime;
+        }
     }
 
     public void TakeDamage(int damageAmount)
     {
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-        playerHealth.Damage(damageAmount, true);
-        if (playerHealth.currentHealth <= 0)
+        //playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        playerHealh.Damage(damageAmount, true);
+        if (playerHealh.currentHealth <= 0)
         {
             Respawn();
-            playerHealth.Heal(playerHealth.startingHealth);
+            playerHealh.Heal(playerHealh.startingHealth);
         }
     }
 

@@ -1267,6 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 592733609}
   damage: 10
+  knockBack: 0.5
 --- !u!61 &189908277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4569,7 +4570,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   spawnPosition: {fileID: 1979486962}
-  playerHealth: {fileID: 0}
+  hitTimer: 0
   lookingRight: 1
 --- !u!114 &592733616
 MonoBehaviour:
@@ -5028,6 +5029,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633761311}
+  - component: {fileID: 633761312}
   m_Layer: 8
   m_Name: Mushroom
   m_TagString: Enemy
@@ -5052,6 +5054,33 @@ Transform:
   - {fileID: 1203973693}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &633761312
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633761310}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &648979424
 GameObject:
   m_ObjectHideFlags: 0
@@ -7050,8 +7079,8 @@ MonoBehaviour:
   DevMode: 0
   healthBar: {fileID: 1120163476}
   spawnPosition: {fileID: 1895790206}
-  startingHealth: 20
-  currentHealth: 20
+  startingHealth: 40
+  currentHealth: 40
 --- !u!114 &1003624752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7212,9 +7241,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

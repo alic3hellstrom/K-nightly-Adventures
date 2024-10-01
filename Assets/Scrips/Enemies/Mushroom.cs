@@ -16,7 +16,8 @@ public class Mushroom : MonoBehaviour
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
     }
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         transform.Translate(new Vector2(moveSpeed, 0) * Time.deltaTime);
 
@@ -32,27 +33,23 @@ public class Mushroom : MonoBehaviour
 
         anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
     }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("EnemyBlock"))
         {
             moveSpeed = -moveSpeed;
         }
-        if (other.gameObject.CompareTag("Player"))
-        {
-           
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {  
+        {
             anim.SetTrigger("IsDead");
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(other.GetComponent<Rigidbody2D>().velocity.x, 0);
             other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bounciness));
             Destroy(gameObject, 0.5f);
-          
         }
     }
 }
