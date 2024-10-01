@@ -12,6 +12,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private Health playerHealth;
+    [SerializeField] private AudioClip[] pickupSounds;
+    [SerializeField] private AudioClip[] jumpSounds;
+    [SerializeField] private AudioClip[] hurtSounds;
+    [SerializeField] private AudioClip[] respawnSounds;
+    [SerializeField] private AudioClip[] deaths;
 
     private bool isGrounded;
     private float rayDistance = 0.25f;
@@ -19,11 +24,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rgbd;
     private SpriteRenderer rend;
     private Animator anim;
+    private AudioSource audioSorce;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        audioSorce = GetComponent<AudioSource>();
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -64,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         playerHealth.Damage(damageAmount, true);
         if(playerHealth.currentHealth <= 0)
         {
+            audioSorce.PlayOneShot(deaths[Random.Range(0, deaths.Length)], 0.5f);
             Respawn();
             playerHealth.Heal(playerHealth.startingHealth);
         }
@@ -82,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rgbd.AddForce(new Vector2(0, jumpForce));
+        audioSorce.PlayOneShot(jumpSounds[Random.Range(0, jumpSounds.Length)], 0.5f);
     }
     private bool CheckIfGrounded()
     {
@@ -103,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.layer.Equals(8)) // 8 st�r f�r layer 8 som �r enemies, om spelaren krockar med enemies, f�r den 10 i skada. 
         {
             TakeDamage(10);
+            audioSorce.PlayOneShot(hurtSounds[Random.Range(0, hurtSounds.Length)], 0.5f);
         }
     }
 
@@ -110,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = spawnPosition.position;
         rgbd.velocity = Vector2.zero;
+        audioSorce.PlayOneShot(respawnSounds[Random.Range(0, respawnSounds.Length)], 0.5f);
     }
 
 
