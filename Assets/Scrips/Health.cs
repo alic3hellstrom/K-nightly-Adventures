@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,36 +34,30 @@ public class Health : MonoBehaviour
         if (DevMode) { 
             if (Input.GetKeyDown(KeyCode.G))
             {
-               Damage(10, false);
+               Damage(10);
             }
-
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-               Damage(10, true);
-            }
-
             if (Input.GetKeyDown(KeyCode.H))
             {
                 Heal(10);
             }
         }
     }
-    public void Damage(int amount, bool isPlayer)
+    public void Damage(int amount)
     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
         }
             this.currentHealth -= amount;
-        if (currentHealth < startingHealth)
+        if (currentHealth > 0)
         {
             anim.SetTrigger("Attacked");
         }
 
-        if (currentHealth <= 0)
+        else
         {
-            Die(isPlayer);
             anim.SetTrigger("IsDead");
+            Die();
         }
     }
     
@@ -91,16 +86,24 @@ public class Health : MonoBehaviour
     {
         transform.position = spawnPosition.position;
         rgbd.velocity = Vector2.zero;
-    }
+        currentHealth = startingHealth;
 
-    private void Die(bool isPlayer)
+        anim.SetTrigger("IsAlive");
+    }
+    
+    private void Die()
     {
+        bool isPlayer = this.CompareTag("Player");
             Debug.Log("I am Dead");
-            if (!isPlayer)
-            {
-                Destroy(gameObject, 1f);
-                Respawn();
-            }
+        if (!isPlayer)
+        {
+            Destroy(gameObject, 1f);
+         
+        }
+        else 
+        {
+            Invoke("Respawn", 1f);
+        }
     }
 
     

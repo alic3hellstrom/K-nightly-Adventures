@@ -1252,6 +1252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096d4ab60dd638847971478278d340f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockBack: 3
 --- !u!61 &189908277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1284,7 +1285,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3}
+  m_Offset: {x: 2.627582, y: 0.29999995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1295,7 +1296,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9, y: 3}
+  m_Size: {x: 4.026366, y: 3}
   m_EdgeRadius: 0
 --- !u!1 &213598604
 GameObject:
@@ -4660,7 +4661,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   spawnPosition: {fileID: 1979486962}
-  playerHealth: {fileID: 0}
   pickupSounds: []
   jumpSounds:
   - {fileID: 8300000, guid: ca5bd7f0c05b18b418bb592a77f33f34, type: 3}
@@ -4682,6 +4682,7 @@ MonoBehaviour:
   deaths:
   - {fileID: 8300000, guid: d9dd78ecb05e4a34ca074f4e9842a627, type: 3}
   - {fileID: 8300000, guid: de8b9680561bd1a40955d73ca4800035, type: 3}
+  lookingRight: 1
 --- !u!114 &592733616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4712,7 +4713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 189908274}
-  radius: 1
+  radius: 0
   enemies:
     serializedVersion: 2
     m_Bits: 256
@@ -6993,6 +6994,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1643959341}
     m_Modifications:
+    - target: {fileID: 1077412838503377412, guid: 0b573a5feace49d4bb713ac1d546973d, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5739871458829654872, guid: 0b573a5feace49d4bb713ac1d546973d, type: 3}
       propertyPath: m_Name
       value: Mushroom (2)
@@ -19625,7 +19630,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f50e80e348ba6e044a0cb5973946a550, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.138
+  m_Volume: 0.06
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -20771,6 +20776,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1643959341}
     m_Modifications:
+    - target: {fileID: 1077412838503377412, guid: 0b573a5feace49d4bb713ac1d546973d, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5739871458829654872, guid: 0b573a5feace49d4bb713ac1d546973d, type: 3}
       propertyPath: m_Name
       value: Mushroom (1)
@@ -21907,6 +21916,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1643959341}
     m_Modifications:
+    - target: {fileID: 1077412838503377412, guid: 0b573a5feace49d4bb713ac1d546973d, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5739871458829654872, guid: 0b573a5feace49d4bb713ac1d546973d, type: 3}
       propertyPath: m_Name
       value: Mushroom (3)

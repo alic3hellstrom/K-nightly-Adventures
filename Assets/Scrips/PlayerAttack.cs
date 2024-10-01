@@ -59,6 +59,7 @@ public class PlayerAttack : MonoBehaviour
     public void endAttack()
     { 
         anim.SetBool("IsAttacking", false);
+        attackArea.SetActive(false);
     }
 
     private void OnDrawGizmos()

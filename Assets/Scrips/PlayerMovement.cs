@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,14 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform spawnPosition;
-    [SerializeField] private Health playerHealth;
+    
     [SerializeField] private AudioClip[] pickupSounds;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private AudioClip[] hurtSounds;
     [SerializeField] private AudioClip[] respawnSounds;
     [SerializeField] private AudioClip[] deaths;
 
+    private Health playerHealth;
     private bool isGrounded;
+    public bool lookingRight = true;
     private float rayDistance = 0.25f;
     private float horizontalValue;
     private Rigidbody2D rgbd;
@@ -43,11 +46,14 @@ public class PlayerMovement : MonoBehaviour
        if(horizontalValue < 0)
         {
             FlipSprite(true);
+            lookingRight = false;
+
         }
 
         if (horizontalValue > 0)
         {
             FlipSprite(false);
+            lookingRight = true;
         }
 
         CheckIfGrounded();
@@ -67,12 +73,12 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-        playerHealth.Damage(damageAmount, true);
+        playerHealth.Damage(damageAmount);
         if(playerHealth.currentHealth <= 0)
-        {
+        {  
             audioSorce.PlayOneShot(deaths[Random.Range(0, deaths.Length)], 0.5f);
-            Respawn();
-            playerHealth.Heal(playerHealth.startingHealth);
+            RespawnSound();
+       
         }
     }
 
@@ -83,7 +89,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipSprite(bool direction)
     {
-        rend.flipX = direction;
+        Vector3 rotation = transform.eulerAngles;
+        if (direction)
+        {
+            rotation.y = 180f;
+        }
+        else
+        {
+            rotation.y = 0f;
+        }
+        transform.eulerAngles = rotation;
     }
 
     private void Jump()
@@ -115,11 +130,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Respawn()
+    public void RespawnSound()
     {
-        transform.position = spawnPosition.position;
-        rgbd.velocity = Vector2.zero;
-        audioSorce.PlayOneShot(respawnSounds[Random.Range(0, respawnSounds.Length)], 0.5f);
+       
+        audioSorce.PlayOneShot(respawnSounds[Random.Range(0, respawnSounds.Length)], 1f);
     }
 
 
