@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform spawnPosition;
+    [SerializeField] public TMP_Text enemiesKilled;
     
     [SerializeField] private AudioClip[] pickupSounds;
     [SerializeField] private AudioClip[] jumpSounds;
@@ -23,15 +25,17 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public bool lookingRight = true;
     private float rayDistance = 0.25f;
-    private float horizontalValue;
+    public float horizontalValue;
     private Rigidbody2D rgbd;
     private SpriteRenderer rend;
     private Animator anim;
     private AudioSource audioSorce;
+    public int enemyKilled = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemiesKilled.text = "" + enemyKilled;
         audioSorce = GetComponent<AudioSource>();
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
@@ -130,6 +134,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void UpdateScore() 
+    
+    {
+        enemyKilled++;
+    }
     public void RespawnSound()
     {
        

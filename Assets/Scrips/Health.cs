@@ -98,6 +98,7 @@ public class Health : MonoBehaviour
         if (!isPlayer)
         {
             Destroy(gameObject, 1f);
+            UpdateScore();
          
         }
         else 
