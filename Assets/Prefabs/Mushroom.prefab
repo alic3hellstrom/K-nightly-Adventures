@@ -284,9 +284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef58ae0bb2021e342a4379bf44117ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DevMode: 0
+  DevMode: 1
   healthBar: {fileID: 1854080927054668308}
   spawnPosition: {fileID: 188915474307441699}
+  enemyTextField: {fileID: 0}
   startingHealth: 20
   currentHealth: 20
 --- !u!50 &1077412838503377412
@@ -910,4 +911,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096d4ab60dd638847971478278d340f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   knockBack: 0.5
