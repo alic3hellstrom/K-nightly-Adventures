@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private int damage = 10;
+    [SerializeField] private int damage = 10;
     [SerializeField] private float knockBack = .5f;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -13,26 +13,18 @@ public class AttackArea : MonoBehaviour
 
         if (hp != null)
         {
-            Health health = other.GetComponent<Health>();
-            health.Damage(damage);
-        
-            print("Attacking Enemy" + other.name);
+            //print("Attacking Enemy" + other.name);
             //print("HELLO WORLD");
-            
+
             if (other.transform.position.x > this.transform.position.x)
             {
-                other.GetComponent<Rigidbody2D>().AddForce(new(knockBack * 2 , knockBack), ForceMode2D.Impulse);
-                
+                other.GetComponent<Rigidbody2D>().AddForce(new(knockBack * 2, knockBack), ForceMode2D.Impulse);
             }
             else if (other.transform.position.x < this.transform.position.x)
             {
                 other.GetComponent<Rigidbody2D>().AddForce(new(-knockBack * 2, knockBack), ForceMode2D.Impulse);
-                
             }
             hp.Damage(damage);
         }
-
     }
-
-    
 }

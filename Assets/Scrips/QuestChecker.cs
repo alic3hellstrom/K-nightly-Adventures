@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class QuestChecker : MonoBehaviour
 {
-
     [SerializeField] private GameObject dialogueBox, finishedText, unfinishedText;
     [SerializeField] private int questGoal = 6;
     [SerializeField] private int levelToLoad;
+    [SerializeField] public TMP_Text textField;
 
     private Animator anim;
     private bool levelIsLoading = false;
@@ -17,11 +18,12 @@ public class QuestChecker : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if(other.GetComponent<PlayerMovement>().enemyKilled >= questGoal)
+            if (textField.GetComponent<QuestScore>().enemyKilled >= questGoal)
             {
                 dialogueBox.SetActive(true);
                 finishedText.SetActive(true);
@@ -37,7 +39,6 @@ public class QuestChecker : MonoBehaviour
         }
     }
 
-
     private void LoadNextLevel()
     {
         SceneManager.LoadScene(levelToLoad);
@@ -50,7 +51,6 @@ public class QuestChecker : MonoBehaviour
             dialogueBox.SetActive(false);
             finishedText.SetActive(false);
             unfinishedText.SetActive(false);
-
         }
     }
 }

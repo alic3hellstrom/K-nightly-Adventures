@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform leftFoot, rightFoot;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform spawnPosition;
-    [SerializeField] public TMP_Text enemiesKilled;
-    
+    //[SerializeField] public TMP_Text enemiesKilled;
+
     [SerializeField] private AudioClip[] pickupSounds;
     [SerializeField] private AudioClip[] jumpSounds;
     [SerializeField] private AudioClip[] hurtSounds;
@@ -30,12 +30,12 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer rend;
     private Animator anim;
     private AudioSource audioSorce;
-    public int enemyKilled = 0;
+    //public int enemyKilled = 0;
 
     // Start is called before the first frame update
     private void Start()
     {
-        enemiesKilled.text = "" + enemyKilled;
+        //enemiesKilled.text = "" + enemyKilled;
         audioSorce = GetComponent<AudioSource>();
         rgbd = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
@@ -59,9 +59,7 @@ public class PlayerMovement : MonoBehaviour
             lookingRight = true;
         }
 
-        CheckIfGrounded();
-
-        if (Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
+        if (Input.GetButtonDown("Jump") && CheckIfGrounded())
         {
             Jump();
         }
@@ -131,11 +129,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void UpdateScore() 
-    
-    {
-        enemyKilled++;
-    }
     public void RespawnSound()
     {
         audioSorce.PlayOneShot(respawnSounds[Random.Range(0, respawnSounds.Length)], 1f);

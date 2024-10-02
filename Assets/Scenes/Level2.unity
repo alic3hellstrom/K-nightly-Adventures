@@ -354,11 +354,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 466141956641140222, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 102.97
+      value: -61.89
       objectReference: {fileID: 0}
     - target: {fileID: 466141956641140222, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.33
+      value: 4.64
       objectReference: {fileID: 0}
     - target: {fileID: 466141956641140222, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -399,6 +399,22 @@ PrefabInstance:
     - target: {fileID: 2176010037755784480, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3096000142544467291, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
+      propertyPath: m_Size.x
+      value: 4.555443
+      objectReference: {fileID: 0}
+    - target: {fileID: 3096000142544467291, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
+      propertyPath: m_Size.y
+      value: 3.0846405
+      objectReference: {fileID: 0}
+    - target: {fileID: 3096000142544467291, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.55656815
+      objectReference: {fileID: 0}
+    - target: {fileID: 3096000142544467291, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.7557371
       objectReference: {fileID: 0}
     - target: {fileID: 4117303162823232953, guid: 93df44b7a497541e69943607184e3cb4, type: 3}
       propertyPath: m_FlipX
@@ -749,6 +765,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 890034294}
     m_Modifications:
+    - target: {fileID: 307804025308105592, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: enemyTextField
+      value: 
+      objectReference: {fileID: 451303293}
     - target: {fileID: 1397156348803829298, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.419924
@@ -792,6 +812,14 @@ PrefabInstance:
     - target: {fileID: 3124645912344044344, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_Name
       value: FlyingEyes (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593978610366798068, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781042895402779804, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1058,6 +1086,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 890034294}
     m_Modifications:
+    - target: {fileID: 307804025308105592, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: enemyTextField
+      value: 
+      objectReference: {fileID: 451303293}
     - target: {fileID: 1397156348803829298, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.48252
@@ -1101,6 +1133,14 @@ PrefabInstance:
     - target: {fileID: 3124645912344044344, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_Name
       value: FlyingEyes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593978610366798068, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781042895402779804, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1459,6 +1499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096d4ab60dd638847971478278d340f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   knockBack: 3
 --- !u!61 &189908277
 BoxCollider2D:
@@ -3989,8 +4030,9 @@ GameObject:
   - component: {fileID: 451303294}
   - component: {fileID: 451303296}
   - component: {fileID: 451303295}
+  - component: {fileID: 451303297}
   m_Layer: 5
-  m_Name: EnemyKilled
+  m_Name: EnemiesKilled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4037,8 +4079,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 6
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 653a9b1513f9b439daf128fd50fd9d5f, type: 2}
+  m_sharedMaterial: {fileID: 4882170967302891577, guid: 653a9b1513f9b439daf128fd50fd9d5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4112,6 +4154,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451303293}
   m_CullTransparentMesh: 1
+--- !u!114 &451303297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451303293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fba42aad12b98146b236912fa79c2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesKilled: {fileID: 451303295}
+  enemyKilled: 0
 --- !u!1 &491784342
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,6 +4764,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 890034294}
     m_Modifications:
+    - target: {fileID: 307804025308105592, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: enemyTextField
+      value: 
+      objectReference: {fileID: 451303293}
     - target: {fileID: 1397156348803829298, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 107.008804
@@ -4751,6 +4811,14 @@ PrefabInstance:
     - target: {fileID: 3124645912344044344, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_Name
       value: FlyingEyes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593978610366798068, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781042895402779804, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5343,6 +5411,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9dd78ecb05e4a34ca074f4e9842a627, type: 3}
   - {fileID: 8300000, guid: de8b9680561bd1a40955d73ca4800035, type: 3}
   lookingRight: 1
+  horizontalValue: 0
 --- !u!114 &592733616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5358,6 +5427,7 @@ MonoBehaviour:
   DevMode: 1
   healthBar: {fileID: 1930394309}
   spawnPosition: {fileID: 1979486962}
+  enemyTextField: {fileID: 35641543}
   startingHealth: 100
   currentHealth: 100
 --- !u!114 &592733617
@@ -5372,6 +5442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff497900789e1614583f9f05e309fa9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackArea: {fileID: 189908274}
   attackPoint: {fileID: 189908274}
   radius: 0
   enemies:
@@ -24933,6 +25004,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 890034294}
     m_Modifications:
+    - target: {fileID: 307804025308105592, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: enemyTextField
+      value: 
+      objectReference: {fileID: 451303293}
     - target: {fileID: 1397156348803829298, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.9545755
@@ -24976,6 +25051,14 @@ PrefabInstance:
     - target: {fileID: 3124645912344044344, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_Name
       value: FlyingEyes (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593978610366798068, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781042895402779804, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30883,6 +30966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 890034294}
     m_Modifications:
+    - target: {fileID: 307804025308105592, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: enemyTextField
+      value: 
+      objectReference: {fileID: 451303293}
     - target: {fileID: 1397156348803829298, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.566744
@@ -30926,6 +31013,14 @@ PrefabInstance:
     - target: {fileID: 3124645912344044344, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_Name
       value: FlyingEyes (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593978610366798068, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781042895402779804, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32687,6 +32782,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 890034294}
     m_Modifications:
+    - target: {fileID: 307804025308105592, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: enemyTextField
+      value: 
+      objectReference: {fileID: 451303293}
     - target: {fileID: 1397156348803829298, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4673195
@@ -32730,6 +32829,14 @@ PrefabInstance:
     - target: {fileID: 3124645912344044344, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
       propertyPath: m_Name
       value: FlyingEyes (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593978610366798068, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781042895402779804, guid: 5a41db0102271e54d822695bf9fd4bd4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33126,6 +33233,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc000885c531ed94c970a36a6bc44182, type: 3}
+--- !u!1001 &7263936037751825531
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 102.44004
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.505806
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.8140802
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419273463997471427, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 912820699374582210, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: enemyTextField
+      value: 
+      objectReference: {fileID: 451303293}
+    - target: {fileID: 4039365967136173856, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
+      propertyPath: m_Name
+      value: Checker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -33144,3 +33312,4 @@ SceneRoots:
   - {fileID: 890034294}
   - {fileID: 326489659}
   - {fileID: 24366458}
+  - {fileID: 7263936037751825531}
