@@ -22281,7 +22281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 912820699374582210, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
       propertyPath: questAmount
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 912820699374582210, guid: 8785d8d50f4e10f4181e6d8533d33a5e, type: 3}
       propertyPath: enemyTextField

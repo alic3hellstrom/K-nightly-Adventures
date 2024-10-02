@@ -12,12 +12,6 @@ public class DetectLeaves : MonoBehaviour
     private void Start()
     {
         leavesGen.SetActive(false);
-        //generators = leavesGen.GetComponentInChildren<ParticleSystem>();
-        foreach (ParticleSystem p in leavesGen.GetComponentsInChildren<ParticleSystem>())
-        {
-            generators = p.GetComponentsInChildren<ParticleSystem>();
-        }
-        print(generators.Length);
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -25,7 +19,7 @@ public class DetectLeaves : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //print(other.GetComponent<PlayerMovement>().horizontalValue);
-            if (other.GetComponent<PlayerMovement>().horizontalValue != 0)
+            if (other.GetComponent<PlayerMovement>().horizontalValue != 0 && other.CompareTag("Player"))
             {
                 leavesGen.SetActive(true);
             }
@@ -35,5 +29,10 @@ public class DetectLeaves : MonoBehaviour
             }
             leavesGen.transform.position = new(other.transform.position.x, leavesGen.transform.position.y);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        leavesGen.SetActive(false);
     }
 }

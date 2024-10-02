@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.VersionControl;
+
+//using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class FlyingEye : MonoBehaviour
@@ -11,17 +12,16 @@ public class FlyingEye : MonoBehaviour
     public Transform startingPoint;
     private SpriteRenderer rend;
     private GameObject player;
-   
-    private void Start()
 
+    private void Start()
 
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rend = GetComponent<SpriteRenderer>();
     }
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
-        
         if (player == null)
             return;
         if (chase == true)
@@ -29,14 +29,12 @@ public class FlyingEye : MonoBehaviour
         else
             ReturnStartPoint();
         Flip();
-
     }
 
     private void ReturnStartPoint()
-    { 
+    {
         transform.position = Vector2.MoveTowards(transform.position, startingPoint.position, speed * Time.deltaTime);
     }
-  
 
     public void Chase()
     {
@@ -47,10 +45,7 @@ public class FlyingEye : MonoBehaviour
     {
         if (transform.position.x > player.transform.position.x)
             transform.rotation = Quaternion.Euler(0, 0, 0);
-        else 
-            transform.rotation=Quaternion.Euler(0, 180, 0);
+        else
+            transform.rotation = Quaternion.Euler(0, 180, 0);
     }
-
-
-
 }

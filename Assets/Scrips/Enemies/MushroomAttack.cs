@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.Examples;
-using UnityEditor.Tilemaps;
+
+//using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class MushroomAttack : MonoBehaviour
 {
     #region Public Variables
+
     public Transform rayCast;
     public LayerMask raycastMask;
     public float rayCastLength;
@@ -15,20 +17,23 @@ public class MushroomAttack : MonoBehaviour
     public float timer;
     public Transform leftLimit;
     public Transform rightLimit;
-    #endregion
+
+    #endregion Public Variables
 
     #region Private Variables
+
     private RaycastHit2D hit;
     private Transform target;
     private Animator anim;
-    private float distance; 
+    private float distance;
     private bool attackMode;
     private bool inRange;
     private bool cooling;
     private float intTimer;
-    #endregion
 
-    void Awake()
+    #endregion Private Variables
+
+    private void Awake()
     {
         SelectTarget();
         intTimer = timer;
@@ -36,18 +41,17 @@ public class MushroomAttack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
         if (!attackMode)
         {
             Move();
         }
 
         if (!InsideofLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("MushroomAttack"))
-            {
+        {
             SelectTarget();
-            }
+        }
 
         if (inRange)
         {
@@ -60,60 +64,59 @@ public class MushroomAttack : MonoBehaviour
             }
             else if (hit.collider == null)
             {
-                inRange = false; 
+                inRange = false;
             }
 
-            if (inRange == false) 
+            if (inRange == false)
             {
-                
                 StopAttack();
             }
         }
     }
 
-    void OnTriggerEnter2D(Collider2D trig)
+    private void OnTriggerEnter2D(Collider2D trig)
     {
         if (trig.gameObject.tag == "Player")
-        { 
+        {
             target = trig.transform;
             inRange = true;
             Flip();
         }
     }
 
-    void EnemyLogic()
-    { 
+    private void EnemyLogic()
+    {
         distance = Vector2.Distance(transform.position, target.position);
 
         if (distance > attackDistance)
         {
             StopAttack();
         }
-        else if (attackDistance >= distance && cooling == false) 
+        else if (attackDistance >= distance && cooling == false)
         {
             Attack();
         }
 
         if (cooling)
-        { 
+        {
             Cooldown();
-            anim.SetBool("Attack", false );
+            anim.SetBool("Attack", false);
         }
     }
 
-    void Move()
+    private void Move()
     {
         anim.SetBool("canWalk", true);
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("MushroomAttack"))
-        { 
+        {
             Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
     }
 
-    void Attack()
+    private void Attack()
     {
         timer = intTimer;
         attackMode = true;
@@ -122,32 +125,32 @@ public class MushroomAttack : MonoBehaviour
         anim.SetBool("Attack", true);
     }
 
-    void Cooldown()
-    { 
+    private void Cooldown()
+    {
         timer -= Time.deltaTime;
 
         if (timer <= 0 && cooling && attackMode)
-        { 
+        {
             cooling = false;
             timer = intTimer;
         }
     }
 
-    void StopAttack()
+    private void StopAttack()
     {
         cooling = false;
         attackMode = false;
-        anim.SetBool("Attack", false) ;
+        anim.SetBool("Attack", false);
     }
 
-    void RaycastDebugger()
+    private void RaycastDebugger()
     {
         if (distance > attackDistance)
         {
             Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.red);
         }
         else if (attackDistance > distance)
-        { 
+        {
             Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.green);
         }
     }
@@ -158,13 +161,12 @@ public class MushroomAttack : MonoBehaviour
     }
 
     private bool InsideofLimits()
-    { 
+    {
         return transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x;
-
     }
 
     private void SelectTarget()
-    { 
+    {
         float distanceToLeft = Vector2.Distance(transform.position, leftLimit.position);
         float distanceToRight = Vector2.Distance(transform.position, rightLimit.position);
 
@@ -178,8 +180,8 @@ public class MushroomAttack : MonoBehaviour
         }
 
         Flip();
-
     }
+
     private void Flip()
     {
         Vector3 rotation = transform.eulerAngles;

@@ -22,6 +22,8 @@ public class Health : MonoBehaviour
 
     private float timer = 0;
 
+    private bool allowDamage = true;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -56,23 +58,26 @@ public class Health : MonoBehaviour
 
     public void Damage(int amount)
     {
-        if (timer <= 0.01)
+        if (allowDamage)
         {
-            timer = 0.25f;
-            if (amount < 0)
+            if (timer <= 0.01)
             {
-                throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
-            }
-            this.currentHealth -= amount;
-            if (currentHealth > 0)
-            {
-                anim.SetTrigger("Attacked");
-            }
-            else
-            {
-                anim.SetTrigger("IsDead");
-                qS.AnotherBitesTheDust();
-                Die();
+                timer = 0.25f;
+                if (amount < 0)
+                {
+                    throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
+                }
+                this.currentHealth -= amount;
+                if (currentHealth > 0)
+                {
+                    anim.SetTrigger("Attacked");
+                }
+                else
+                {
+                    anim.SetTrigger("IsDead");
+                    qS.AnotherBitesTheDust();
+                    Die();
+                }
             }
         }
     }
@@ -105,10 +110,12 @@ public class Health : MonoBehaviour
         currentHealth = startingHealth;
 
         anim.SetTrigger("IsAlive");
+        allowDamage = true;
     }
 
     private void Die()
     {
+        allowDamage = false;
         bool isPlayer = this.CompareTag("Player");
         Debug.Log("I am Dead");
         if (!isPlayer)

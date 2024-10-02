@@ -552,7 +552,7 @@ MonoBehaviour:
   healthBar: {fileID: 4552656672335702972}
   spawnPosition: {fileID: 7774442071311506767}
   enemyTextField: {fileID: 0}
-  startingHealth: 20
+  startingHealth: 10
   currentHealth: 0
 --- !u!61 &2747865942337859848
 BoxCollider2D:

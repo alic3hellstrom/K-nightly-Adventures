@@ -21,7 +21,7 @@ public class QuestCheckerFilip : MonoBehaviour
     {
         enemiesKilled = questScore.enemyKilled;
 
-        if (enemiesKilled >= 6)
+        if (enemiesKilled >= questAmount)
         {
             SceneManager.LoadScene(nextLevel);
         }
