@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectsWithTag("Player");
         currentHealth = startingHealth;
         rgbd = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -98,7 +99,7 @@ public class Health : MonoBehaviour
         if (!isPlayer)
         {
             Destroy(gameObject, 1f);
-            UpdateScore();
+            this.GetComponent<PlayerMovement>();
          
         }
         else 
