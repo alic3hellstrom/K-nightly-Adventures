@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public int enemyKilled = 0;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         enemiesKilled.text = "" + enemyKilled;
         audioSorce = GetComponent<AudioSource>();
@@ -43,15 +43,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         horizontalValue = Input.GetAxis("Horizontal");
 
-       if(horizontalValue < 0)
+        if (horizontalValue < 0)
         {
             FlipSprite(true);
             lookingRight = false;
-
         }
 
         if (horizontalValue > 0)
@@ -62,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
         CheckIfGrounded();
 
-        if(Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
+        if (Input.GetButtonDown("Jump") && CheckIfGrounded() == true)
         {
             Jump();
         }
@@ -70,23 +69,20 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("MoveSpeed", Mathf.Abs(rgbd.velocity.x));
         anim.SetFloat("VerticalSpeed", rgbd.velocity.y);
         anim.SetBool("IsGrounded", CheckIfGrounded());
-
-        
     }
 
     public void TakeDamage(int damageAmount)
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         playerHealth.Damage(damageAmount);
-        if(playerHealth.currentHealth <= 0)
-        {  
+        if (playerHealth.currentHealth <= 0)
+        {
             audioSorce.PlayOneShot(deaths[Random.Range(0, deaths.Length)], 0.5f);
             RespawnSound();
-       
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rgbd.velocity = new Vector2(horizontalValue * moveSpeed * Time.deltaTime, rgbd.velocity.y);
     }
@@ -110,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         rgbd.AddForce(new Vector2(0, jumpForce));
         audioSorce.PlayOneShot(jumpSounds[Random.Range(0, jumpSounds.Length)], 0.5f);
     }
+
     private bool CheckIfGrounded()
     {
         RaycastHit2D leftHit = Physics2D.Raycast(leftFoot.position, Vector2.down, rayDistance, whatIsGround);
@@ -127,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer.Equals(8)) // 8 st�r f�r layer 8 som �r enemies, om spelaren krockar med enemies, f�r den 10 i skada. 
+        if (collision.gameObject.layer.Equals(8)) // 8 st�r f�r layer 8 som �r enemies, om spelaren krockar med enemies, f�r den 10 i skada.
         {
             TakeDamage(10);
             audioSorce.PlayOneShot(hurtSounds[Random.Range(0, hurtSounds.Length)], 0.5f);
@@ -141,9 +138,6 @@ public class PlayerMovement : MonoBehaviour
     }
     public void RespawnSound()
     {
-       
         audioSorce.PlayOneShot(respawnSounds[Random.Range(0, respawnSounds.Length)], 1f);
     }
-
-
 }
